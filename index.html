@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="shortcut icon" type="image/png" href="favicon.png">
+
+		<title>Clock | Screen Saver</title>
+
+		<script>
+			/* Initialising the flag */
+			function first () {
+				window.element = document.getElementById('time');
+				window.flag = "time";
+			}
+
+			/* Changing the flags to know what function to run */
+			function changeFlagTime() {
+				flag = "time";
+			}
+			function changeFlagDate() {
+				flag = "date";
+			}
+			function changeFlagDay() {
+				flag = "day";
+			}
+
+			/* Actual functions for calculation and showing (for time) */
+			function startTime() {
+				if (flag == "time") {
+					var today = new Date();
+					var h = today.getHours();
+					var m = today.getMinutes();
+					var s = today.getSeconds();
+					var a = h>=12 ? 'pm' : 'am';
+					h = (h % 12) || 12;
+					m = checkTime(m);
+					s = checkTime(s);
+					document.getElementById('txt').style.fontSize = '240px';
+					document.getElementById('txt').innerHTML = h + ":" + m + ":" + s + " " + a;
+					var t = setTimeout(startTime, 500);
+					if (element.id != "time") {
+						document.getElementById('time').classList.add("active");
+						document.getElementById(element.id).classList.remove("active");
+						element = document.getElementById('time');
+					}
+				}
+			}
+			/* Adding 0 in front of the numbers. */ 
+			function checkTime(i) {
+			  if (i < 10) {i = "0" + i};
+			  return i;
+			}
+
+			/* Actual functions for calculation and showing (for date) */
+			function startDate() {
+				if (flag == "date") {
+					var today = new Date();
+					var d = today.getDate();
+					var month = new Array();
+					month[0] = "January";
+					month[1] = "February";	
+					month[2] = "March";
+					month[3] = "April";
+					month[4] = "May";
+					month[5] = "June";
+					month[6] = "July";	
+					month[7] = "August";
+					month[8] = "September";
+					month[9] = "October";
+					month[10] = "November";
+					month[11] = "December";
+					var mon = month[today.getMonth()];
+					var y = today.getFullYear();
+					var monflag = today.getMonth();
+					if ((monflag == 0 || monflag == 1) || monflag == 8 || (monflag == 10 || monflag == 11)) {
+						document.getElementById('txt').style.fontSize = '180px';
+					}
+					else if (monflag == 7 || monflag == 9) {
+						document.getElementById('txt').style.fontSize = '200px';
+					}	
+					document.getElementById('txt').innerHTML = d + " " + mon + " " + y;
+					var t = setTimeout(startTime, 500);
+					if (element.id != "date") {
+						document.getElementById('date').classList.add("active");
+						document.getElementById(element.id).classList.remove("active");
+						element = document.getElementById('date');
+					}
+				}
+			}
+			/* Actual functions for calculation and showing (for date) */
+			function startDay () {
+				if (flag == "day") {
+					var today = new Date();
+					var day = new Array();
+					day[0] = "Sunday";
+					day[1] = "Monday";
+					day[2] = "Tuesday";
+					day[3] = "Wednesday";
+					day[4] = "Thursday";
+					day[5] = "Friday";
+					day[6] = "Saturday";
+					day[7] = "Sunday";
+					var dae = day[today.getDay()];
+					document.getElementById('txt').style.fontSize = '240px';
+					document.getElementById('txt').innerHTML = dae;
+					var t = setTimeout(startDay, 500);
+					if (element.id != "day") {
+						document.getElementById('day').classList.add("active");
+						document.getElementById(element.id).classList.remove("active");
+						element = document.getElementById('day');
+					}			
+				}
+			}
+		</script>
+	</head>
+	<body onload="first(); startTime();">
+		<header>
+			<div class="heading">
+				<span id="greet" class="h1">Good morning Sir</span>
+				<span class="right">
+					<ul>
+						<li id="time" class="h2 active" onclick="changeFlagTime(); startTime();">Time</li>
+						<li id="date" class="h2" onclick="changeFlagDate(); startDate();">Date</li>
+						<li id="day" class="h2" onclick="changeFlagDay(); startDay();">Day</li>
+						<li class="h2">Change Theme</li>
+					</ul>
+				</span>	
+			</div>
+		</header>
+
+		<div id="txt"></div>
+
+		<div class="quote">
+			<div>
+				<img src="PMA.jpg" alt="Jacksepticeye's Motto" class="center">
+			</div>
+			<h3>I believe in you!<br>You're on your way...just keep going<br>Remember the rules about the dark ones, 'cuz they will always pass<br>It's ok noone has any idea but most importantly...<br><span class="big">NEVER GIVE UP.</span></h3>
+		</div>
+	</body>
+</html>

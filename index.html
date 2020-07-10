@@ -8,8 +8,53 @@
 		<title>Clock | Screen Saver</title>
 
 		<script>
+			/* Dark mode toggle */
+			function dark () {	
+				switch (theme) {
+					case "white": document.body.style.backgroundColor = "#050f1b";
+								  document.body.style.color = "lightgrey";
+								  theme = "black";
+								  break;
+					case "black": document.body.style.backgroundColor = "white";
+								  document.body.style.color = "#201F20";
+								  theme = "white";
+								  break;
+				}
+			}			
+
+			/* Greet Selector */
+			function wish() {
+				var wishtime = new Date();
+				var wh = wishtime.getHours();
+				if (wh >= 0 && wh <= 5) {
+					document.getElementById('greet').innerHTML = "U still up?";
+				}
+				else if (wh > 5 && wh <= 7) {
+					document.getElementById('greet').innerHTML = "Get some Exercise";
+				}
+				else if (wh > 7 && wh <= 9) {
+					document.getElementById('greet').innerHTML = "Good Morning Sir";
+				}
+				else if (wh > 9 && wh <= 12) {
+					document.getElementById('greet').innerHTML = "Get an Early start";
+				}
+				else if (wh >= 12 && wh <= 15) {
+					document.getElementById('greet').innerHTML = "Good Afternoon Sir";
+				}
+				else if (wh > 15 && wh <= 20) {
+					document.getElementById('greet').innerHTML = "You are doing great";
+				}
+				else if (wh > 20 && wh <= 22) {
+					document.getElementById('greet').innerHTML = "Good Day Sir";
+				}
+				else if (wh > 22 && wh < 0) {
+					document.getElementById('greet').innerHTML = "Good Night Sir";
+				}
+			}
+
 			/* Initialising the flag */
 			function first () {
+				window.theme = "white";
 				window.element = document.getElementById('time');
 				window.flag = "time";
 			}
@@ -36,7 +81,6 @@
 					h = (h % 12) || 12;
 					m = checkTime(m);
 					s = checkTime(s);
-					document.getElementById('txt').style.fontSize = '240px';
 					document.getElementById('txt').innerHTML = h + ":" + m + ":" + s + " " + a;
 					var t = setTimeout(startTime, 500);
 					if (element.id != "time") {
@@ -73,12 +117,6 @@
 					var mon = month[today.getMonth()];
 					var y = today.getFullYear();
 					var monflag = today.getMonth();
-					if ((monflag == 0 || monflag == 1) || monflag == 8 || (monflag == 10 || monflag == 11)) {
-						document.getElementById('txt').style.fontSize = '180px';
-					}
-					else if (monflag == 7 || monflag == 9) {
-						document.getElementById('txt').style.fontSize = '200px';
-					}	
 					document.getElementById('txt').innerHTML = d + " " + mon + " " + y;
 					var t = setTimeout(startTime, 500);
 					if (element.id != "date") {
@@ -102,7 +140,6 @@
 					day[6] = "Saturday";
 					day[7] = "Sunday";
 					var dae = day[today.getDay()];
-					document.getElementById('txt').style.fontSize = '240px';
 					document.getElementById('txt').innerHTML = dae;
 					var t = setTimeout(startDay, 500);
 					if (element.id != "day") {
@@ -114,22 +151,22 @@
 			}
 		</script>
 	</head>
-	<body onload="first(); startTime();">
+	<body onload="wish(); first(); startTime();">
 		<header>
 			<div class="heading">
-				<span id="greet" class="h1">Good morning Sir</span>
+				<span id="greet" class="h1"></span>
 				<span class="right">
 					<ul>
 						<li id="time" class="h2 active" onclick="changeFlagTime(); startTime();">Time</li>
 						<li id="date" class="h2" onclick="changeFlagDate(); startDate();">Date</li>
 						<li id="day" class="h2" onclick="changeFlagDay(); startDay();">Day</li>
-						<li class="h2">Change Theme</li>
+						<li class="theme" onclick="dark()">Change Theme</li>
 					</ul>
 				</span>	
 			</div>
 		</header>
 
-		<div id="txt"></div>
+		<div class="main-center"><span id="txt"></span></div>
 
 		<div class="quote">
 			<div>

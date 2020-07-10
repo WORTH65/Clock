@@ -3,16 +3,20 @@ body, html {
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
+	background-color: white;
+	color: #201F20;
+	cursor: context-menu;
 }
 
 /* Header styling */
 header .right {
 	float: right;
-	margin-right: 50px;
+	margin: 0px 50px;
 }
 header ul {
 	display: flex;
 	list-style-type: none;
+	margin-top: 0px;
 }
 header ul li {
 	margin-right: 8px !important;
@@ -26,6 +30,20 @@ header ul li {
 	padding: 4px 8px;
 	border-radius: 4px;
 	margin-right: 4px;
+}
+.theme {
+	font-weight: 600;
+	font-size: 18px;
+	border: 1px solid darkgrey;
+	padding: 4px 8px;
+	border-radius: 4px;
+	margin-right: 4px;
+}
+.theme:hover {
+	background-color: black;
+	border: 1px solid black;
+	color: white;
+	cursor: pointer;
 }
 .h2:hover {
 	background-color: black;
@@ -41,11 +59,10 @@ header ul li {
 }
 
 .heading {
-	margin: 56px 0 88px 48px;
+	padding: 56px 0 88px 48px;
 }
 .h1 {
 	font-weight: bold;
-	color: 	#201F20;
 	border-radius: 8px;
 	border: 1px solid #4C4B4D;
 	padding: 8px 16px;
@@ -53,12 +70,17 @@ header ul li {
 	box-shadow: 2px 2px 8px #888888;
 }
 
+.main-center {
+	text-align: center;
+} 
 #txt {
+	padding: 8px 80px;
+	display: inline-block;
 	overflow: hidden;
-	font-size: 240px;
+	font-size: 180px;
 	text-align: center;
 	border: 12px solid dimgray;
-	margin: 0 56px 40px 56px;
+	margin-bottom: 56px;
 	border-radius: 80px;
 	text-shadow: 1px 1px 4px;
 }
@@ -66,6 +88,8 @@ header ul li {
 .center {
 	height: 300px;
 	width: 300px;
+	border: 4px solid black;
+	border-radius: 8px;
 }
 .quote-center {
 	max-width: 1920px;
@@ -76,6 +100,7 @@ header ul li {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 48px;
 }
 h3 {
 	margin-left: 8px;
